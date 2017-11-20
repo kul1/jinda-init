@@ -38,7 +38,7 @@ These versions works for sure but others may do.
 ## Convention
 
 * database is MongoDB
-* images stored in upload directory, unset IMAGE_LOCATION in `initializer/mindapp.rb` to use Cloudinary
+* images stored in upload directory, unset IMAGE_LOCATION in `initializer/jinda.rb` to use Cloudinary
 * mail use Gmail SMTP, config in `config/application.rb`
 * authentication use omniauth-identity
 
@@ -49,13 +49,13 @@ app without ActiveRecord
 
     $ rails new YOURAPP --skip-test-unit --skip-bundle --skip-active-record
 
-## Add mindapp to your Gemfile:
+## Add jinda to your Gemfile:
 
-    gem 'mindapp2'
+    gem 'jinda2'
 
 For Development (most updated)
 
-    gem 'mindapp', github:'kul1/mindapp2'
+    gem 'jinda', github:'kul1/jinda'
 
 depend on your operating system, you may need to uncomment
 
@@ -65,21 +65,21 @@ install gems
 
     $ bundle
 
-generate mindapp application
+generate jinda application
 
-    $ rails generate mindapp:install
+    $ rails generate jinda:install
 
-Then run bundle again to install additional gems added by mindapp
+Then run bundle again to install additional gems added by jinda
 
     $ bundle
 
 configure mongoid
 
-    $ rails generate mindapp:mongoid
+    $ rails generate jinda:mongoid
 
     Please make sure mongod is running then create admin user
 
-    $ rake mindapp:seed
+    $ rake jinda:seed
 
 now the application is ready, start it as any Rails application
 
@@ -90,7 +90,7 @@ go to http://localhost:3000, click *Sign In* on the left menu, and enter user na
 ![home](https://cloud.githubusercontent.com/assets/3953832/25599624/deab1cee-2f07-11e7-8058-ef67a429e874.png)
 
 
-Now open file `app/mindapp/index.mm` using Freemind
+Now open file `app/jinda/index.mm` using Freemind
 
 ![index mm](https://cloud.githubusercontent.com/assets/3953832/25599716/90ea1c84-2f08-11e7-8240-dac26742862d.png)
 
@@ -121,9 +121,9 @@ In this example we just want a product model, so delete the person and address m
 
 Save the mind map then run:
 
-    rake mindapp:update
+    rake jinda:update
 
-This will create file `app/models/product.rb`. In this file, note the comment lines   `# mindapp begin` and ` # mindapp end`. Everything inside these comments will get overwritten when you change the models branch in the mind map so if you need to put anything inside here, use the mind map instead. You can add anything outside these comment lines which will be preserved when doing mindapp:update.
+This will create file `app/models/product.rb`. In this file, note the comment lines   `# jinda begin` and ` # jinda end`. Everything inside these comments will get overwritten when you change the models branch in the mind map so if you need to put anything inside here, use the mind map instead. You can add anything outside these comment lines which will be preserved when doing jinda:update.
 
 ### services
 
@@ -133,7 +133,7 @@ Next we'll add some product into the database, we'll first take a look at the se
 
 The text `users:User` on the sub branch has these implications:
 
-* `users` correspond to `app/controllers/users_controller.rb` which already exist when you do rails generate mindapp:install. New branch will create new controller if not exist. In Jinda term, this will be called module.
+* `users` correspond to `app/controllers/users_controller.rb` which already exist when you do rails generate jinda:install. New branch will create new controller if not exist. In Jinda term, this will be called module.
 * `User` will create entry in main menu on the left of the screen. You don't see it in the screenshot above because it's controlled by the sub branch `role:m` which means this menu only available for login member. If you already signed in as admin, you should see it now.
 
 The next sub branches has the following:
@@ -153,7 +153,7 @@ Armed with this knowledge, we are ready to add new product into our application 
 
 To generate controller and views we save this mind map and run
 
-    rake mindapp:update
+    rake jinda:update
 
 open file `app/views/products/add/enter.html.erb` you'll see some sample view already in there but commented. edit the file so it look like this
 
