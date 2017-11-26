@@ -139,7 +139,7 @@ end
         gem 'mongoid-paperclip', require: 'mongoid_paperclip'
         gem 'meta-tags'
         gem 'jquery-turbolinks'
-
+        gem 'bootstrap'
         gem 'mongo', '~> 2.2'
         gem 'bson', '~> 4.0'
         gem 'mongoid', github: 'mongodb/mongoid'
