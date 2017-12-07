@@ -139,11 +139,10 @@ end
         gem 'mongoid-paperclip', require: 'mongoid_paperclip'
         gem 'meta-tags'
         gem 'jquery-turbolinks'
-        gem 'bootstrap'
+        gem 'jquery-rails' # for jquery-ujs
         gem 'mongo', '~> 2.2'
         gem 'bson', '~> 4.0'
         gem 'mongoid', github: 'mongodb/mongoid'
-        # gem "mongoid"
         gem 'nokogiri' # use for jinda/doc
         gem 'haml', git: 'https://github.com/haml/haml'
         gem 'haml-rails'
@@ -157,7 +156,6 @@ end
         gem 'cloudinary'
         gem 'kaminari'
         gem 'kaminari-mongoid'
-        gem 'jquery-rails'
         gem_group :development, :test do
           gem "rspec"
           gem "rspec-rails"

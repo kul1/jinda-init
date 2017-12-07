@@ -1,4 +1,26 @@
-- if request.accept=="text/html, */*; q=0.01"
-  = render "layouts/page"
-- else
-  = render "layouts/full"
+%html
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %title Standup App2
+    = csrf_meta_tags
+
+    %title Jinda Title | AdminLTE
+    %link{:href => "https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic", :rel => "stylesheet"}/
+
+
+    = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_include_tag "application", 'data-turbolinks-track': 'reload'
+
+
+  %body.hold-transition.skin-yellow.sidebar-mini
+    .wrapper
+      = render "layouts/navigator/header"
+      = render "layouts/navigator/sidebar"
+      .content-header
+        %h1= @title || DEFAULT_TITLE
+      .content-wrapper
+        = yield
+      = render 'layouts/navigator/footer'
+      .control-sidebar-bg
+
+

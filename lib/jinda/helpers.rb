@@ -311,7 +311,8 @@ module Jinda
       ## To use remember me cookies then remove
       #session[:user_id] != nil
       #current_ma_user != nil
-      cookies[:auth_token] != nil
+      #cookies[:auth_token]
+      current_ma_user != nil
     end
     def own_xmain?
       if $xmain
