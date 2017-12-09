@@ -156,6 +156,7 @@ end
         gem 'cloudinary'
         gem 'kaminari'
         gem 'kaminari-mongoid'
+        gem 'rails-assets-adminbsb-materialdesign', source: 'https://rails-assets.org'
         gem_group :development, :test do
           gem "rspec"
           gem "rspec-rails"
