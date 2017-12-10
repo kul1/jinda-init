@@ -1,3 +1,3 @@
-module Jinda
+module Jinda_lte
   VERSION = "0.0.1-alpha"
 end
