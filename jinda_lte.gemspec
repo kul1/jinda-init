@@ -4,7 +4,7 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require "jinda_lte/version"
 
 Gem::Specification.new do |spec|
-  spec.name          = "jinda-lte"
+  spec.name          = "jinda_lte"
   spec.version       = Jinda::VERSION
   spec.authors       = [ "Prateep Kul", "Korakot Leemakdej"]
   spec.email         = ["1.0@kul.asia"]
