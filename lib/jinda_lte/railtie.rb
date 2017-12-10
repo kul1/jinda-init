@@ -1,5 +1,5 @@
-require 'jinda'
-require 'jinda/helpers'
+require 'jinda_lte'
+require 'jinda_lte/helpers'
 
 module Jinda
   require 'rails'
