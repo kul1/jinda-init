@@ -11,13 +11,10 @@
 // GO AFTER THE REQUIRES BELOW.
 //
 //= require jquery
-//= require jquery.turbolinks
 //= require jquery_ujs
 //= require jquery.mobile.splitview
 //= require jquery.mobile-1.2.1
 //= require jquery.mobile.datebox
-//= require jinda
-//= require turbolinks
-//= require ckeditor/init
-
-
+//= require iscroll-wrapper
+//= require iscroll
+//= require mindapp
