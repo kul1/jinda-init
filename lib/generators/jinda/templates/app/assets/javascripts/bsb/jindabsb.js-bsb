@@ -16,5 +16,5 @@
 //= require plugins/jquery-sparkline/jquery.sparkline.js
 //= require js/admin.js
 //= require js/pages/index.js
-//= require js/pages/demo.js
+//= require js/demo.js
 

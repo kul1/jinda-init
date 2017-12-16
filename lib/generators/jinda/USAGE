@@ -1,8 +1,2 @@
 Description:
-    Explain the generator
-
-Example:
-    rails generate new Thing
-
-    This will create:
-        what/will/it/create
+    Generate Jinda Rails Application
