@@ -9,8 +9,8 @@ Gem::Specification.new do |spec|
   spec.authors       = [ "Prateep Kul", "Korakot Leemakdej"]
   spec.email         = ["1.0@kul.asia"]
 
-  spec.summary       = %q{Rails workflow from mind map}
-  spec.description   = %q{Generate Rails workflow from mind map}
+  spec.summary       = %q{Rails workflow from mind map: Freemind}
+  spec.description   = %q{Generate Rails workflow from mind map: Freemind}
   spec.homepage      = "https://github.com/kul1/jinda"
   spec.license       = "MIT"
   spec.files         = Dir['Rakefile', '{bin,lib,test}/**/*', 'README*', 'LICENSE*'] & `git ls-files -z`.split("\0")
