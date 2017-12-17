@@ -310,8 +310,8 @@ module Jinda
     def login?
       ## To use remember me cookies then remove
       #session[:user_id] != nil
-      #current_ma_user != nil
-      cookies[:auth_token] != nil
+      current_ma_user != nil
+      #cookies[:auth_token] != nil
     end
     def own_xmain?
       if $xmain
