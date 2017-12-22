@@ -19,21 +19,21 @@
 
 %h2 Installation
 %ul
-  %li gem 'jinda', '~> 0.0.1'
+  %li gem 'jinda', '~> 0.0.6'
   %li bundle
   %li rails generate jinda:install
   %li bundle
-  %li rails generate jinda:mongoid
+  %li rails generate jinda:config
   %li rake db:seed, will create initial user:password admin:secret
   %li when update app/jinda/index.mm, run rake jinda:update
 
-%h2 Option: Themes available: Jinda-bsb, Jinda-lte
+%h2 Option: Themes available: Jinda_adminbsb, Jinda_adminlte
 %ul 
-  %li gem 'jinda-bsb' 
-  %li or 
-  %li gem 'jinda-lte' 
-  %li
-  %li bundle 
-  %li rails generate jindabsb:install
+  %li To install gem 'jinda_adminlte' 
+  %li Install 
+  %li gem 'jinda_adminlte' 
+  %li Then
+  %li $ bundle 
+  %li $ rails generate jinda_adminlte:install
 
 

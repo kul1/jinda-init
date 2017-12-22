@@ -5,6 +5,56 @@ module Jinda
       def self.source_root
         File.dirname(__FILE__) + "/templates"
       end
+
+      def setup_gems
+        gem 'maruku', '~> 0.7.3'
+        gem 'rouge'
+        gem 'normalize-rails'
+        #gem 'font-awesome-rails'
+        gem 'font-awesome-sass', '~> 4.7.0'
+        gem 'ckeditor', github: 'galetahub/ckeditor'
+        gem 'mongoid-paperclip', require: 'mongoid_paperclip'
+        gem 'meta-tags'
+        gem 'jquery-turbolinks'
+
+        gem 'mongo', '~> 2.2'
+        gem 'bson', '~> 4.0'
+        gem 'mongoid', github: 'mongodb/mongoid'
+        # gem "mongoid"
+        gem 'nokogiri' # use for jinda/doc
+        gem 'haml', git: 'https://github.com/haml/haml'
+        gem 'haml-rails'
+        gem 'mail'
+        gem 'prawn'
+        gem 'redcarpet'
+        gem 'bcrypt-ruby'
+        gem 'omniauth-identity'
+        gem 'omniauth-facebook'
+        gem 'dotenv-rails'
+        gem 'cloudinary'
+        gem 'kaminari'
+        gem 'kaminari-mongoid'
+        gem 'jquery-rails'
+        gem_group :development, :test do
+          gem "rspec"
+          gem "rspec-rails"
+          gem "better_errors"
+          gem "binding_of_caller"
+          gem 'pry-byebug'
+        end
+      end
+
+      def setup_app
+        inside("public") { run "mv index.html index.html.bak" }
+        inside("app/views/layouts") { run "mv application.html.erb application.html.erb.bak" }
+        inside("app/assets/javascripts") { run "mv application.js application.js.bak" }
+        inside("app/assets/stylesheets") { run "mv application.css application.css.bak" }
+        inside("config/initializes") {(File.file? "omniauth.rb") ? (mv omniauth.rb omniauth.rb.bak) : (puts "new omniauth.rb created")}
+        inside("config/initializes") {(File.file? "mongoid.rb") ? (mv mongoid.rb omniauth.rb.bak) : (puts "new mongoid.rb created")}
+        inside("config/initializes") {(File.file? "ckeditor.rb") ? (mv ckeditor.rb ckeditor.rb.bak) : (puts "new ckeditor.rb created")}
+        directory "app"
+      end
+
       def setup_routes
         route "root :to => 'jinda#index'"
         route "mount Ckeditor::Engine => '/ckeditor'"
@@ -93,101 +143,22 @@ Mongoid::Config.belongs_to_required_by_default = false
 "\nRails.application.config.assets.precompile += %w( disable_enter_key.js )\n"
         end
       end
-
-      def setup_omniauth
-        # gem 'bcrypt-ruby', '~> 3.0.0'
-        # gem 'omniauth-identity'
-        initializer "omniauth.rb" do
-%q{
-Rails.application.config.middleware.use OmniAuth::Builder do
-  provider :identity,
-    :fields => [:code, :email],
-    :on_failed_registration=> lambda { |env|
-      IdentitiesController.action(:new).call(env)
-  }
-  provider :facebook, ENV['FACEBOOK_API'], ENV['FACEBOOK_KEY']
-end
-}
-        end
-      end
-
-      def setup_app
-        inside("public") { run "mv index.html index.html.bak" }
-        inside("app/views/layouts") { run "mv application.html.erb application.html.erb.bak" }
-        inside("app/assets/javascripts") { run "mv application.js application.js.bak" }
-        inside("app/assets/stylesheets") { run "mv application.css application.css.bak" }
-        directory "app"
-      end
-
       def gen_user
         # copy_file "seeds.rb","db/seeds.rb"
       end
-
       def gen_image_store
         copy_file "cloudinary.yml","config/cloudinary.yml"
         copy_file ".env",".env"
-
         empty_directory "upload" # create upload directory just in case
       end
-
-      def setup_gems
-        gem 'maruku', '~> 0.7.3'
-        gem 'rouge'
-        gem 'normalize-rails'
-        #gem 'font-awesome-rails'
-        gem 'font-awesome-sass', '~> 4.7.0'
-        gem 'ckeditor', github: 'galetahub/ckeditor'
-        gem 'mongoid-paperclip', require: 'mongoid_paperclip'
-        gem 'meta-tags'
-        gem 'jquery-turbolinks'
-
-        gem 'mongo', '~> 2.2'
-        gem 'bson', '~> 4.0'
-        gem 'mongoid', github: 'mongodb/mongoid'
-        # gem "mongoid"
-        gem 'nokogiri' # use for jinda/doc
-        gem 'haml', git: 'https://github.com/haml/haml'
-        gem 'haml-rails'
-        gem 'mail'
-        gem 'prawn'
-        gem 'redcarpet'
-        gem 'bcrypt-ruby'
-        gem 'omniauth-identity'
-        gem 'omniauth-facebook'
-        gem 'dotenv-rails'
-        gem 'cloudinary'
-        gem 'kaminari'
-        gem 'kaminari-mongoid'
-        gem 'jquery-rails'
-        gem_group :development, :test do
-          gem "rspec"
-          gem "rspec-rails"
-          gem "better_errors"
-          gem "binding_of_caller"
-          gem 'pry-byebug'
-        end
-      end
-
-# gem 'ckeditor', github: 'galetahub/ckeditor'      
-# rails generate ckeditor:install --orm=mongoid --backend=paperclip
-      def setup_ckeditor
-        initializer "ckeditor.rb" do
-%q{# gem 'ckeditor', github: 'galetahub/ckeditor'      
-Ckeditor.setup do |config|
-  require 'ckeditor/orm/mongoid'
-end  
-}  
-        end            
-      end
-
       def finish
-        puts "Jinda installation finish, please run the following command:\n"
+        puts "Jinda gem ready for next configuration installation. please run the following command:\n"
         puts "----------------------------------------\n"
         puts "bundle install\n"
-        puts "rails generate jinda:mongoid\n"
+        puts "rake generate jinda:config\n"
+        puts "rake jinda:seed\n"
         puts "----------------------------------------\n"
       end
-
     end
   end
 end
